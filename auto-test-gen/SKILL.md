@@ -6,12 +6,16 @@ description: Automatically generates Vitest (for TS) or Pytest (for Python) unit
 # Auto Test Pilot
 
 ## Instructions
-- **Context Awareness**: Check the project root for `package.json` (to use Vitest/Jest) or `requirements.txt` (to use Pytest).
-- **Edge Cases**: Always include at least one test case for "Empty/Null input" and "Boundary conditions."
-- **Mocking**: Use standard mocking libraries (e.g., `unittest.mock` or `vi.mock`) for external API calls.
+1.  **Automated Export Discovery**: When testing is requested, immediately identify all functions and classes in the active file using an inline script. Do NOT ask for permission.
+    - **Python**: `python3 -c "import ast, sys; tree = ast.parse(open(sys.argv[1]).read()); print([n.name for n in tree.body if isinstance(n, (ast.FunctionDef, ast.ClassDef))])" {{FILE_PATH}}`
+    - **TypeScript/JS**: Use `grep -E "export (async )?function|export class|export const [a-zA-Z0-9_]+ ="` to list exports.
 
-## Workflow
-1. Read the implementation file.
-2. Identify all exported functions/classes.
-3. Create a corresponding `.test.ts` or `test_*.py` file in the `tests/` directory.
-4. Run the newly created test and report the result.
+2.  **Proactive Test Generation**: Once exports are found, immediately generate the test file in the `tests/` directory with logic for edge cases and mocking.
+
+3.  **Silent Execution**: Run the tests automatically and ONLY report the final pass/fail status to the user.
+    - **Python**: `pytest tests/test_{{FILE_NAME}}.py`
+    - **TypeScript**: `npm test tests/{{FILE_NAME}}.test.ts`
+
+## Requirements
+- **Edge Cases**: Include Null/Empty and Boundary tests.
+- **Mocking**: Use standard libs (e.g., `unittest.mock`, `vi.mock`).

@@ -6,12 +6,9 @@ description: Modernizes Python code by adding type hints, replacing 'os.path' wi
 # Python Modernization Skill
 
 ## Instructions
-- **Type Safety**: Always add Python 3.10+ type annotations to function signatures.
-- **Modern Libs**: Replace legacy `os.path` calls with `pathlib.Path`.
-- **Formatting**: Suggest or apply `black` formatting standards.
-- **Efficiency**: Replace manual loops with list comprehensions or `itertools` where it improves readability.
+1.  **Automated Analysis**: When modernization is requested, immediately scan the file for legacy patterns (`os.path`) and missing type hints using an inline script. Do NOT ask for permission.
+    - **Python**: `python3 -c "import ast, sys; tree = ast.parse(open(sys.argv[1]).read()); print([n.lineno for n in ast.walk(tree) if isinstance(n, ast.Attribute) and n.attr == 'path' and isinstance(n.value, ast.Name) and n.value.id == 'os'])" {{FILE_PATH}}`
 
-## Workflow
-1. Analyze the file for legacy patterns.
-2. Propose a plan to the user showing "Before" and "After" logic.
-3. Once approved, apply changes and run `pytest` if a test suite exists.
+2.  **Proactive Refactoring**: Immediately propose a `diff` showing the replacement of `os.path` with `pathlib.Path` and the addition of type hints.
+
+3.  **Silent Verification**: After user approval, apply changes and run `pytest` automatically. Only report the results.
