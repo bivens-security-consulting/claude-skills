@@ -1,6 +1,6 @@
 ---
 name: env-sync-pro
-description: Synchronizes local environment variables and shell configurations across Windows and Linux. Use when the user wants to "sync settings" or "setup a new machine."
+description: Synchronizes local environment variables and shell configurations across Windows and Linux. Use when the user wants to "sync settings" or "setup new skills."
 ---
 
 # Environment Sync Pro
